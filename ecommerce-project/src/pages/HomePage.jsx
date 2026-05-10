@@ -10,12 +10,12 @@ export function HomePage() {
 
   // below useEffect ensures that we get products from api once, regardless of any re-render of HomePage. 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/products')
+    axios.get('/api/products')
       .then((response) => {
         setProducts(response.data);
       });
 
-    axios.get('http://localhost:3000/api/cart-items')
+    axios.get('/api/cart-items')
       .then((response) => {
         setCart(response.data);
       });
