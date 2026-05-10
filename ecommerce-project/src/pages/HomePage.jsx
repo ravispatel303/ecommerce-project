@@ -1,14 +1,19 @@
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { Header } from '../components/Header';
-import { products } from '../../starting-code/data/products';
 import CheckmarkIcon from '../assets/images/icons/checkmark.png';
 import './HomePage.css';
 
 export function HomePage() {
-  axios.get('http://localhost:3000/api/products')
-    .then((response) => {
-      return response.data;
-    });
+  const [products, setProducts] = useState([]);
+
+  // below useEffect ensures that we get products from api once, regardless of any re-render of HomePage. 
+  useEffect(() => {
+    axios.get('http://localhost:3000/api/products')
+      .then((response) => {
+        setProducts(response.data);
+      });
+  }, []);
 
   return (
     <>
