@@ -8,11 +8,21 @@ export function HomePage({ cart }) {
   const [products, setProducts] = useState([]);
 
   // below useEffect ensures that we get products from api once, regardless of any re-render of HomePage. 
+  // useEffect(() => {
+  //   axios.get('/api/products')
+  //     .then((response) => {
+  //       setProducts(response.data);
+  //     });
+  // }, []);
+
+  // using async and await
   useEffect(() => {
-    axios.get('/api/products')
-      .then((response) => {
-        setProducts(response.data);
-      });
+    const fetchHomeData = async () => {
+      const response = await axios.get('/api/products');
+      setProducts(response.data);
+    }
+
+    fetchHomeData();
   }, []);
 
   return (
