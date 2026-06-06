@@ -26,7 +26,6 @@ export function TrackingPage({ cart }) {
   const orderProduct = order.products.find((orderProduct) => {
     return orderProduct.productId === productId;
   })
-  console.log(orderProduct)
 
   const totalDeliveryTimeMs = orderProduct.estimatedDeliveryTimeMs - order.orderTimeMs;
   const timePassedMs = dayjs().valueOf() - order.orderTimeMs;
